@@ -61,7 +61,8 @@ def main():
         print("Welcome to Oreoluwa's Garage!\n")
         stats = garage_stats()
         print("(1) Parking")
-        print("(2) Retrieving\n")
+        print("(2) Retrieving")
+        print("(3) Exit\n")
         user_option = str(input("Option: "))
 
         if stats < 10 and user_option == "1":
@@ -74,7 +75,10 @@ def main():
             print("Standing By...\n")
             license = str(input("Enter your license plate number: "))
             retrieving(license, stats)
-        elif user_option != "1" or user_option != "2":
+        elif user_option == "3":
+            print("Good bye.\n")
+            break
+        elif user_option != "1" or user_option != "2" or user_option != "3":
             print("Incorrect option. Try again.")
 
 
