@@ -4,12 +4,12 @@ import re
 garage = [None] * 11
 
 
-def none_checker():
-    i = 0
-    while i <= len(garage):
-        if garage[i] is None:
-            return i, True
-        i += 0
+def garage_checker(license):
+    j = 0
+    while j < len(garage):
+        if license == garage[j]:
+            return True
+        j += 1
 
 
 def parking(license):
@@ -20,15 +20,12 @@ def parking(license):
         is_match = False
 
     k = 0
-    j = 0
-
     if is_match is True:
+        garage_check = garage_checker(license)
         print("\nLicense plate number correct.\n")
-        while j < len(garage):
-            if license == garage[j]:
-                print("Car already in the garage.")
-                break
-            j += 1
+        if garage_check == True:
+            print("Car already in the garage.")
+        else:
             while k < len(garage):
                 if garage[k] == None:
                     print("Parking...\n")
@@ -36,7 +33,6 @@ def parking(license):
                     print("Completed! See you soon.")
                     break
                 k += 1
-            break
     if is_match is False:
         print("\nLicense Incorrect.\n")
         license = str(input(
@@ -54,19 +50,18 @@ def retrieving(license, stats):
 
     if is_match is True:
         print("\nLicense plate number correct.\n")
-        while i < (len(garage)):
-            if stats == 0:
-                print("Garage empty!")
-                break
-            if license == garage[i]:
+        if stats == 0:
+            print("Garage empty!")
+        elif stats <= 10:
+            while i < (len(garage)):
+                license == garage[i]
                 print("Retrieving...\n")
                 garage.remove(license)
                 print("Completed! Good Bye!")
                 break
-        else:
-            print("Car not in garage!")
-        if stats == 0:
-            print("Garage empty!")
+            else:
+                print("Car not in garage!")
+        i = 0
     if is_match is False:
         print("\nLicense Incorrect.\n")
         license = str(input(
@@ -114,13 +109,16 @@ def main():
             parking(license)
             cars()
         elif stats == 10 and user_option == "1":
-            print("Garage Full. Please come back later.")
+            print("\nGarage Full. Please come back later.")
         elif user_option == "2":
-            print("\nStanding By...\n")
-            license = str(
-                input("Enter your license plate number: ").strip())
-            retrieving(license, stats)
-            cars()
+            if stats == 0:
+                print("No car in garage...")
+            elif stats <= 10:
+                print("\nStanding By...\n")
+                license = str(
+                    input("Enter your license plate number: ").strip())
+                retrieving(license, stats)
+                cars()
         elif user_option == "3":
             print("Good bye.\n")
             break
